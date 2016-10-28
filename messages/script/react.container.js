@@ -1,9 +1,7 @@
 var MessagesAside = React.createClass({
 	render:function(){
 		return (
-			<div id="aside">
-				左侧栏
-			</div>
+			<div>左侧栏</div>
 			);
 	}
 });
@@ -11,8 +9,10 @@ var MessagesAside = React.createClass({
 var MessagesContainer = React.createClass({
 	render:function(){
 		return (
-			<div className="containerInner">
-				<MessagesAside />
+			<div className="containerInner fix">
+				<div id="aside">
+					<MessagesAside />
+				</div>
 				<div id="main">
 					<MessagesInputArea />
 					<MessagesListTabs />
@@ -24,7 +24,7 @@ var MessagesContainer = React.createClass({
 var MessagesInputArea = React.createClass({
 	render:function(){
 		return (
-			<div className="msgInputArea"> 消息输入框！</div>
+			<div className="msgInputArea">消息输入框</div>
 			);
 	}
 })
@@ -32,7 +32,7 @@ var MessagesInputArea = React.createClass({
 var MessagesListTabs = React.createClass({
 	render:function(){
 		return (
-			<div className="msgListTabs">消息列表！</div>
+			<div className="msgListTabs">消息列表</div>
 		);
 	}
 });
