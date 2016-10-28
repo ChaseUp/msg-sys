@@ -1,1 +1,28 @@
 #main { float: right; width: 880px;}
+/*消息输入框模块*/
+.msgInputArea { padding: 25px 35px 15px; }
+.socialBtnsCheck {}
+/*socialBtns*/
+.socialBtns .checkBtn { position: relative; cursor: pointer; display: inline-block; margin-right: 2px; width: 32px; height: 32px; text-align: center; 
+ line-height: 32px; border-radius: 3px; color: #fff; }
+.socialBtns .checkBtn.facebook { background-color: #2d4f8c; }
+.socialBtns .checkBtn.twitter { background-color: #009bdb;}
+.socialBtns .checkBtn.LinkedIn { background-color: #3369a7;}
+.socialBtns .checkBtn > span { position: absolute; right: 0; bottom: 0; font-size: 12px; background-color: #f44c4c; line-height: 6px; }
+.socialBtns .checkBtn.small { width: 16px; height: 16px; line-height: 16px;  font-size: 12px; margin-left: 2px; }
+/*文字数量提示*/
+.textSizeCheck { line-height: 16px; }
+.textSizeCheck .textSizeTip { font-size: 14px;}
+.textSizeCheck ins{ text-decoration: none; font-size: 12px;}
+.textSizeCheck ins.error { color: #d84242; }
+/*消息输入框*/
+.messageInputSec {}
+.messageInputWrap { position: relative; }
+.messageInputSec #messageInput { display: block; width: 98%; padding:1%; border:1px solid #35a8e9; border-radius: 3px; resize: none;
+ height: 160px; overflow: auto; font: 14px/1.7 'Microsoft YaHei'; color: #181818; box-shadow: inset 0 0 3px #ccc;}
+.messageInputSec #messageInput:focus { box-shadow: inset 0 0 10px #ccc; outline: none;}
+/*引用工具*/
+.messageInputTools .toolBtns a { color: #727272; margin-right: 10px;}
+
+/*消息列表标签*/
+.msgListTabs { margin-top: 20px; }

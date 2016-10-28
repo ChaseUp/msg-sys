@@ -24,5 +24,5 @@ var MessagesListTabs = React.createClass({
 	}
 });
 
-ReactDOM.render(<MessagesMain />,document.getElementById('main'));
+//ReactDOM.render(<MessagesMain />,document.getElementById('main'));
 

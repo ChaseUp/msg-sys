@@ -49,6 +49,7 @@ table {
 }
 
 /*常用css类*/
+a { text-decoration: none; }
 .fll{float:left}
 .flr{float:right}
 .fix{clear:both;zoom:1}
@@ -136,4 +137,8 @@ table {
 .pstAbs{position:absolute}
 .pstFix{position:fixed}
 
-#container { width: 1200px; margin: 0 auto;}
+/*消息群发页面样式*/
+html { background-color: #e2e3e5;}
+body { font: 14px/1.7 'Microsoft YaHei';}
+#container { width: 1200px; margin: 20px auto 0;}
+.sections { background-color: #fff; border-radius: 3px; }
