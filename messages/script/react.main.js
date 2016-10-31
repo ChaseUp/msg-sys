@@ -54,7 +54,23 @@ var MessagesInputArea = React.createClass({
 var MessagesListTabs = React.createClass({
 	render:function(){
 		return (
-			<div className="msgListTabs">消息列表</div>
+			<div className="msgListTabs sections">
+				<div className="msgListTabBtns">
+					<a href="javascript:;" className="on">已发布</a>
+					<a href="javascript:;">待发布</a>
+					<a href="javascript:;">草稿</a>
+					<div className="msgListTabContCheck">
+						<label className="on"><input type="checkbox" value="facebook" /><i className="fa fa-check"></i> Facebook</label>
+						<label><input type="checkbox" value="twitter" /><i className="fa fa-check"></i> twitter</label>
+						<label><input type="checkbox" value="linkedin" /><i className="fa fa-check"></i> linkedin</label>
+					</div>
+				</div>
+				<div className="msgListTabList">
+					<ul>
+						<li>列表数据</li>
+					</ul>
+				</div>
+			</div>
 		);
 	}
 });
@@ -69,5 +85,5 @@ var MessagesMain = React.createClass({
 	}
 });
 
-//ReactDOM.render(<MessagesMain />,document.getElementById('main'));
+ReactDOM.render(<MessagesMain />,document.getElementById('main'));
 

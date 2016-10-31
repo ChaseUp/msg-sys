@@ -28,4 +28,17 @@
 .postBtns a.postBtns-push { width: 120px; background-color: #44b549; color: #fff; border-color: #44b549;}
 .postBtns a.postBtns-draft { padding: 0 10px; background-color: #fbfbfb; border-color: #eeeeee; color: #707070; margin-right: 10px;}
 /*消息列表标签*/
-.msgListTabs { margin-top: 20px; }
+.msgListTabs { margin-top: 20px; padding-bottom: 20px; }
+.msgListTabBtns { margin: 0 30px; position: relative; border-bottom: 1px solid #e9ecf1;}
+.msgListTabBtns > a { position: relative; display: inline-block; line-height: 50px; padding: 0 6px; margin-right: 15px; color: #9e9e9e;
+ font-size: 16px; font-weight: bold; }
+.msgListTabBtns > a.on { color: #209eea; }
+.msgListTabBtns > a.on:after { content: " "; position: absolute; width: 100%; height: 4px; left: 0; bottom: -1px; background-color: #209eea; }
+/*发送列表筛选框*/
+.msgListTabBtns .msgListTabContCheck { position: absolute; top: 11px; right: 0; }
+.msgListTabBtns .msgListTabContCheck label { position: relative; display: inline-block; line-height: 26px; border:1px solid #dadada; background-color: #fbfbfb;
+ color: #2f3130; padding: 0 10px; border-radius: 3px; margin-left: 5px; }
+.msgListTabBtns .msgListTabContCheck label input { opacity: 0; position: absolute; left: 0; top: 0;}
+.msgListTabBtns .msgListTabContCheck label .fa { display: none; }
+.msgListTabBtns .msgListTabContCheck label.on { color: #209eeb; border-color: #209eeb; background-color: #fff; }
+.msgListTabBtns .msgListTabContCheck label.on .fa { display: inline;}
