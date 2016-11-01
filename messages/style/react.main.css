@@ -1,20 +1,20 @@
 #main { float: right; width: 880px;}
 /*消息输入框模块*/
 .msgInputArea { padding: 25px 35px 15px; }
-.socialBtnsCheck {}
+.socialBtnsCheck { position: relative; }
 /*socialBtns*/
-.socialBtns .checkBtn { position: relative; cursor: pointer; display: inline-block; margin-right: 2px; width: 32px; height: 32px; text-align: center; 
+.socialBtns .checkBtn { position: relative; cursor: pointer; display: inline-block; width: 32px; height: 32px; text-align: center; margin-right: 5px;
  line-height: 32px; border-radius: 3px; color: #fff; }
 .socialBtns .checkBtn.facebook { background-color: #2d4f8c; }
 .socialBtns .checkBtn.twitter { background-color: #009bdb;}
 .socialBtns .checkBtn.LinkedIn { background-color: #3369a7;}
 .socialBtns .checkBtn > span { position: absolute; right: 0; bottom: 0; font-size: 12px; background-color: #f44c4c; line-height: 6px; }
-.socialBtns .checkBtn.small { width: 16px; height: 16px; line-height: 16px;  font-size: 12px; margin-left: 2px; }
+.socialBtns .checkBtn.small { width: 16px; height: 16px; line-height: 16px;  font-size: 12px; margin-left: 8px; margin-right: 0; }
 /*文字数量提示*/
 .textSizeCheck { line-height: 16px; }
 .textSizeCheck .textSizeTip { font-size: 14px;}
-.textSizeCheck ins{ text-decoration: none; font-size: 12px;}
-.textSizeCheck ins.error { color: #d84242; }
+.textSizeCheck ins{ text-decoration: none; font-size: 12px; }
+.textSizeCheck ins.error { color: #d84242; font-weight: bold; }
 /*消息输入框*/
 .messageInputSec {}
 .messageInputWrap { position: relative; }
@@ -23,6 +23,11 @@
 .messageInputSec #messageInput:focus { box-shadow: inset 0 0 10px #ccc; outline: none;}
 /*引用工具*/
 .messageInputTools .toolBtns a { color: #727272; margin-right: 10px;}
+.messageInputTools .toolBtns a.photos .fa { color: #8ecf3f;}
+.messageInputTools .toolBtns a.articles .fa { color: #40cbb4;}
+.messageInputTools .toolBtns a.products .fa { color: #b174c2;}
+.messageInputTools .toolBtns a.pages .fa { color: #f39801;}
+.messageInputTools .toolBtns a.clockPush .fa { color: #58ade6;}
 /*发布按钮*/
 .postBtns a { display: inline-block; height: 34px; line-height: 34px; text-align: center; border-width: 1px; border-radius: 3px; border-style: solid; }
 .postBtns a.postBtns-push { width: 120px; background-color: #44b549; color: #fff; border-color: #44b549;}
@@ -31,14 +36,17 @@
 .msgListTabs { margin-top: 20px; padding-bottom: 20px; }
 .msgListTabBtns { margin: 0 30px; position: relative; border-bottom: 1px solid #e9ecf1;}
 .msgListTabBtns > a { position: relative; display: inline-block; line-height: 50px; padding: 0 6px; margin-right: 15px; color: #9e9e9e;
- font-size: 16px; font-weight: bold; }
+ font-size: 16px; font-weight: bold; cursor: pointer;}
 .msgListTabBtns > a.on { color: #209eea; }
 .msgListTabBtns > a.on:after { content: " "; position: absolute; width: 100%; height: 4px; left: 0; bottom: -1px; background-color: #209eea; }
 /*发送列表筛选框*/
 .msgListTabBtns .msgListTabContCheck { position: absolute; top: 11px; right: 0; }
 .msgListTabBtns .msgListTabContCheck label { position: relative; display: inline-block; line-height: 26px; border:1px solid #dadada; background-color: #fbfbfb;
  color: #2f3130; padding: 0 10px; border-radius: 3px; margin-left: 5px; }
-.msgListTabBtns .msgListTabContCheck label input { opacity: 0; position: absolute; left: 0; top: 0;}
+.msgListTabBtns .msgListTabContCheck label input { opacity: 0.6; position: absolute; left: 0; top: 0;}
 .msgListTabBtns .msgListTabContCheck label .fa { display: none; }
 .msgListTabBtns .msgListTabContCheck label.on { color: #209eeb; border-color: #209eeb; background-color: #fff; }
 .msgListTabBtns .msgListTabContCheck label.on .fa { display: inline;}
+/*标签卡内容*/
+.msgListTabList .msgListTabCont { display: none; }
+.msgListTabList .msgListTabCont.on { display: block; }
