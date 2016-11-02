@@ -12,39 +12,90 @@
 var SocialInfoList = React.createClass({
 	getInitialState: function() {
 		return {
-			data: {}
+			facebookListToggle:false,
+			twitterListToggle:false,
+			linkedinListToggle:false,
+			loading: true,
+			data: null
 		};
 	},
-	//获取用户已绑定的账号列表
-	componentDidMount: function() {
-		$.ajax({
-			url: this.props.url,
-			dataType: 'json',
-			type: 'GET',
-			success: function(xhr) {
-				this.setState({
-					data: xhr
-				});
-			}.bind(this)
-		});
+	componentDidMount() {
+		this.props.promise.then(
+			value => this.setState({
+				loading: false,
+				data: value
+			})
+		)
 	},
-	render:function(){
-		return (
-			<div className="socialBtnsCheck fll">
-				<div className="checkBtn facebook">
-					<i className="fa fa-facebook"></i>
-					<span><i className="fa fa-check"></i></span>
+	handleClickToggle:function(event){
+		var evtClassName = event.target.className;
+		if(evtClassName.indexOf("facebook")!=-1){
+			!this.state.facebookListToggle?this.setState({facebookListToggle: true}):this.setState({facebookListToggle: false});
+			this.setState({twitterListToggle: false});
+			this.setState({linkedinListToggle: false});
+		}
+		if(evtClassName.indexOf("twitter")!=-1){
+			!this.state.twitterListToggle?this.setState({twitterListToggle: true}):this.setState({twitterListToggle: false});
+			this.setState({facebookListToggle: false});
+			this.setState({linkedinListToggle: false});
+		}
+		if(evtClassName.indexOf("linkedin")!=-1){
+			!this.state.linkedinListToggle?this.setState({linkedinListToggle: true}):this.setState({linkedinListToggle: false});
+			this.setState({facebookListToggle: false});
+			this.setState({twitterListToggle: false});
+		};
+	},
+	render: function() {
+		if (this.state.loading) {
+			return <span> Loading... </span>;
+		} else {
+			var repos = this.state.data.socialList;
+
+			var facebookUserList = repos.map(function(repo, index) {
+				if (repo.provider == 'facebook') {
+					return (
+						<label  key={index} data-tokenId={repo.tokenId}><input type="checkbox" value="" /> {repo.showName}</label>
+					);
+				}
+			});
+
+			var twitterUserList = repos.map(function(repo, index) {
+				if (repo.provider == 'twitter') {
+					return (
+						<label  key={index} data-tokenId={repo.tokenId}><input type="checkbox" value="" /> {repo.showName}</label>
+					);
+				}
+			});
+
+			var LinkedInUserList = repos.map(function(repo, index) {
+				if (repo.provider == 'linkedin') {
+					return (
+						<label  key={index} data-tokenId={repo.tokenId}><input type="checkbox" value="" /> {repo.showName}</label>
+					);
+				}
+			});
+
+			return ( 
+				<div className="socialBtnsCheck fll">
+					<div className="checkBtn facebook" data-toggle={this.state.facebookListToggle}>
+						<i className="fa fa-facebook" onClick={this.handleClickToggle}></i> 
+						<span>+</span>
+						<div className="socialUserList facebookUserList"> {facebookUserList} </div>
+					</div>
+					<div className="checkBtn twitter" data-toggle={this.state.twitterListToggle}>
+						<i className="fa fa-twitter" onClick={this.handleClickToggle}></i> 
+						<span>+</span>
+						<div className="socialUserList twitterUserList" > {twitterUserList} </div> 
+					</div>
+					<div className="checkBtn LinkedIn" data-toggle={this.state.linkedinListToggle}>
+						<i className="fa fa-linkedin" onClick={this.handleClickToggle}></i> 
+						<span>+</span>
+						<div className="socialUserList LinkedInUserList"> {LinkedInUserList} </div>
+					</div>
+					<p className="socialCheckError">至少选择一个社交媒体</p>
 				</div>
-				<div className="checkBtn twitter">
-					<i className="fa fa-twitter"></i>
-					<span className="hide"><i className="fa fa-check"></i></span>
-				</div>
-				<div className="checkBtn LinkedIn">
-					<i className="fa fa-linkedin"></i>
-					<span className="hide"><i className="fa fa-check"></i></span>
-				</div>
-			</div>
-			)
+			);
+		}
 	}
 });
 
@@ -62,7 +113,7 @@ var SocialBtns = React.createClass({
 	render:function(){
 		return (
 			<div className="socialBtns fix">
-				<SocialInfoList url="/phoenix/admin/social/msg/socialInfo" />
+				<SocialInfoList promise={$.getJSON('/phoenix/admin/social/msg/socialInfo')} />
 
 				<div className="textSizeCheck flr">
 					<span className="textSizeTip">还可以输入：</span>
@@ -206,21 +257,138 @@ var TabCont = React.createClass({
 });
 
 var MessagesDataList = React.createClass({
-	render:function(){
-		return (
-			<ul className={this.props.url}>
-	          <li>{this.props.name}</li>
-	        </ul>);
-  }
+	getInitialState: function() {
+		return {
+			error: true,
+			data: null
+		};
+	},
+	componentDidMount() {
+		this.props.promise.then(
+			value => this.setState({
+				error: false,
+				data: value
+			})
+		)
+	},
+	render: function() {
+		if (this.state.error) {
+			return <span> error... </span>;
+		} else {
+			var msgList = this.state.data.msgList;
+			var msgSendQueue = this.state.data.msgSendQueue;
+
+			var msgDataList = msgList.map(function(repo, index) {
+				return (
+					<li key={index} className="msgDataListInner" data-msgId={repo.encodePkId}>
+						<div className="queueInfo fix">
+							<div className="msgAddTime fll">
+								时间：{repo.addTime.year}年{repo.addTime.month}月{repo.addTime.date}日 
+								{repo.addTime.hours}:{repo.addTime.minutes} 
+							</div>
+							<div className="msgSendQueue fll ml20">
+								<span className="fll">发布平台：</span> 
+								<MsgSendQueue dataqueue={msgSendQueue[repo.encodePkId]} />
+							</div>
+						</div>
+						<div className="msgDataListCont">{repo.content}</div>
+					</li>
+				);
+			});
+
+			return ( 
+				<ul>
+					{msgDataList}
+				</ul>
+			);
+		}
+	}
 });
+
+var MsgSendQueue = React.createClass({
+	getInitialState: function() {
+		return {
+			fbList:false,
+			twList:false,
+			ldinList:false
+		};
+	},
+	handleClickToggle:function(event){
+		var evtClassName = event.target.className;
+		if(evtClassName.indexOf("facebook")!=-1){
+			!this.state.fbList?this.setState({fbList: true}):this.setState({fbList: false});
+			this.setState({twList: false});
+			this.setState({ldinList: false});
+		}
+		if(evtClassName.indexOf("twitter")!=-1){
+			!this.state.twList?this.setState({twList: true}):this.setState({twList: false});
+			this.setState({fbList: false});
+			this.setState({ldinList: false});
+		}
+		if(evtClassName.indexOf("linkedin")!=-1){
+			!this.state.ldinList?this.setState({ldinList: true}):this.setState({ldinList: false});
+			this.setState({fbList: false});
+			this.setState({twList: false});
+		};
+	},
+	render:function(){
+		var dataQueue = this.props.dataqueue;
+		var facebookDataQueue = dataQueue.map(function(repo, index) {
+			if(repo.provider=="facebook"){
+				return (
+					<li key={index} data-sendFlag={repo.sendFlag}>{repo.dispName}</li>
+					)
+			}
+		})
+		var twitterDataQueue = dataQueue.map(function(repo, index) {
+			if(repo.provider=="twitter"){
+				return (
+					<li key={index} data-sendFlag={repo.sendFlag}>{repo.dispName}</li>
+					)
+			}
+		})
+		var linkedinDataQueue = dataQueue.map(function(repo, index) {
+			if(repo.provider=="linkedin"){
+				return (
+					<li key={index} data-sendFlag={repo.sendFlag}>{repo.dispName}</li>
+					)
+			}
+		})
+		return (
+			<div className="dataQueueWrapper">
+				<div className="dataQueueCheck facebookDataQueue" data-tg={this.state.fbList}>
+					<header onClick={this.handleClickToggle} className="facebook">facebook 
+						<i className="fa fa-angle-down"></i>
+						<i className="fa fa-angle-up"></i>
+					</header>
+					<ul>{facebookDataQueue}</ul>
+				</div>
+				<div className="dataQueueCheck twitterDataQueue" data-tg={this.state.twList}>
+					<header onClick={this.handleClickToggle} className="twitter">twitter 
+						<i className="fa fa-angle-down"></i>
+						<i className="fa fa-angle-up"></i>
+					</header>
+					<ul>{twitterDataQueue}</ul>
+				</div>
+				<div className="dataQueueCheck linkedinDataQueue" data-tg={this.state.ldinList}>
+					<header onClick={this.handleClickToggle} className="linkedin">LinkedIn 
+						<i className="fa fa-angle-down"></i>
+						<i className="fa fa-angle-up"></i>
+					</header>
+					<ul>{linkedinDataQueue}</ul>
+				</div>
+			</div>
+			)
+	}
+})
 
 var MessagesListTabs = React.createClass({
 	render:function(){
 		return (<div className="msgListTabs sections">
 	          <TabsControl>
-	            <TabCont name="已发布"><MessagesDataList url="/phoenix/admin/social/msg/contentList-0" messageStatus="0" name="已发布" /></TabCont>
-	            <TabCont name="定时发"><MessagesDataList url="/phoenix/admin/social/msg/contentList-1" messageStatus="1" name="定时发" /></TabCont>
-	            <TabCont name="草稿"><MessagesDataList url="/phoenix/admin/social/msg/contentList-2" messageStatus="2" name="草稿" /></TabCont>
+	            <TabCont name="已发布"><MessagesDataList promise={$.getJSON("/phoenix/admin/social/msg/contentList-0")} messageStatus="0" /></TabCont>
+	            <TabCont name="定时发"><MessagesDataList promise={$.getJSON("/phoenix/admin/social/msg/contentList-1")} messageStatus="1" /></TabCont>
+	            <TabCont name="草稿"><MessagesDataList promise={$.getJSON("/phoenix/admin/social/msg/contentList-2")}  messageStatus="2"/></TabCont>
 	          </TabsControl>
 	        </div>);
   }

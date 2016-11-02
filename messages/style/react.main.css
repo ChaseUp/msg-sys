@@ -8,8 +8,24 @@
 .socialBtns .checkBtn.facebook { background-color: #2d4f8c; }
 .socialBtns .checkBtn.twitter { background-color: #009bdb;}
 .socialBtns .checkBtn.LinkedIn { background-color: #3369a7;}
-.socialBtns .checkBtn > span { position: absolute; right: 0; bottom: 0; font-size: 12px; background-color: #f44c4c; line-height: 6px; }
+.socialBtns .checkBtn > span {position: absolute;right: -3px;top: -6px; background-color: #f44c4c;line-height: 12px;padding: 2px;border-radius: 50%;
+pointer-events: none; width: 12px;}
 .socialBtns .checkBtn.small { width: 16px; height: 16px; line-height: 16px;  font-size: 12px; margin-left: 8px; margin-right: 0; }
+/*用户社交账户展示列表*/
+.msgInputArea .socialBtns { position:relative; z-index: 3; }
+.checkBtn .socialUserList { position: absolute; display: none; left: 0; top: 42px; padding: 15px; background-color: #fff; border-radius: 3px; 
+ border:1px solid #dcdcdc; box-shadow: 0 0 5px #999; cursor: default; }
+.checkBtn[data-toggle=true] .socialUserList { display: block; }
+.checkBtn .socialUserList:after{ content: ''; width: 8px; height: 12px; position: absolute; left: 10px; top: -6px; border:1px solid #eee; 
+ background-color: #fff; transform-origin: center center; transform:rotate(45deg); box-shadow: 0 0 5px #999; z-index: 2;}
+.checkBtn .socialUserList:before{ content: ''; width: 26px; height: 12px; position: absolute; left: 2px; top: 0px; background-color: #fff;  z-index: 3;}
+.checkBtn .socialUserList label { display: block; text-align: left; color: #333; font-size: 16px; min-width: 200px; white-space: nowrap; cursor: pointer; }
+.socialBtnsCheck .checkBtn > .fa {display: inline-block; height: 32px; width: 32px; line-height: 32px;}
+.socialBtnsCheck .socialCheckError { position: absolute; right: -145px; top: 50%; margin-top: -14px; background-color: #f34e4c; color: #f9f5f6;
+ line-height: 28px; padding: 0 10px; border-radius: 3px; font-size: 12px; white-space: nowrap; }
+.socialBtnsCheck .socialCheckError:after{ content: ''; width: 8px; height: 8px; position: absolute; left: -4px; top: 9px; 
+ background-color: #f34e4c; transform-origin: center center; transform:rotate(45deg); z-index: 2; }
+
 /*文字数量提示*/
 .textSizeCheck { line-height: 16px; }
 .textSizeCheck .textSizeTip { font-size: 14px;}
@@ -50,3 +66,20 @@
 /*标签卡内容*/
 .msgListTabList .msgListTabCont { display: none; }
 .msgListTabList .msgListTabCont.on { display: block; }
+.msgListTabList .msgListTabCont .msgDataList .msgDataListInner { padding: 20px 30px; border-bottom: 1px solid #ddd; }
+.msgDataListInner .queueInfo { color: #a0a0a0; margin-bottom: 10px; }
+.msgDataList .msgDataListInner .msgDataListCont { line-height: 26px; color: #393939; }
+/*数据发送队列状态下拉菜单*/
+.queueInfo {}
+.dataQueueWrapper { float: left; width: 300px; font-size: 12px; }
+.dataQueueWrapper .dataQueueCheck { float: left; position: relative; margin-right: 6px;}
+.dataQueueWrapper .dataQueueCheck header { padding: 0 5px 0 10px; border:1px solid #e5e5e5; border-radius: 2px; background-color: #f7f9f8; color: #55585d; 
+box-shadow: 0 0 4px #ddd; cursor: pointer;}
+.dataQueueWrapper .dataQueueCheck header .fa { font-size: 14px; margin-left: 5px;}
+.dataQueueWrapper .dataQueueCheck header .fa-angle-up { display: none; }
+.dataQueueWrapper .dataQueueCheck ul { display: none; position: absolute; left: 0; right: 0; top: 21px; border:1px solid #e5e5e5; border-radius: 0 0 2px 2px;
+ background-color: #f7f9f8; padding: 2px 0 5px; border-top-color: #f7f9f8; box-shadow: 0 2px 4px #ddd;}
+ .dataQueueWrapper .dataQueueCheck[data-tg="true"] header .fa-angle-down { display: none; }
+ .dataQueueWrapper .dataQueueCheck[data-tg="true"] header .fa-angle-up { display: inline; }
+.dataQueueWrapper .dataQueueCheck[data-tg="true"] ul { display: block; }
+.dataQueueWrapper .dataQueueCheck ul li { padding: 0 10px; color: #55585d; }
