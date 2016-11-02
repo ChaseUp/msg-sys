@@ -1,1 +1,135 @@
-#header { margin-bottom: 20px; background-color: #f3f3f3; }
+#header{
+	width: 100%;
+	height: 60px;
+	background-color: #fff;
+}
+#header .header-inner{
+	width: 1200px;
+	height: 100%;
+	margin: 0 auto;
+}
+#header .logo{}
+/*“进入我的网站”按钮*/
+#header .goto-mysite{
+	display: block;
+	width: 124px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	background-color: #fff;
+	color: #15aff5;
+	font-size: 14px;
+	border: 1px solid #d6dadb;
+	border-radius: 4px;
+	margin: 15px 0 0 38px;
+}
+/*下拉框*/
+#header .user-option{
+	height: 60px;
+	position: relative;
+	text-align: right;
+	color: #6a6a6a;
+	cursor: pointer;
+}
+#header .user-option:hover{
+	color: #4c4b4b;
+}
+#header .user-option .user-name{
+	max-width: 120px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 60px;
+	margin-right: 4px;
+}
+#header .user-option .option-list{
+	position: absolute;
+	top: 62px;
+	right: 0;
+	display: none;
+	background-color: #fff;
+	z-index: 99;
+	width: 160px;
+	border: 1px solid #ccc;
+	box-shadow: 1px 1px 2px #ccc;
+	border-radius: 4px;
+}
+#header .option-list li{
+	width: 100%;
+	height: 30px;
+}
+#header .option-list li a{
+	display: block;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #676767;
+	padding: 0 16px;
+	text-align: left;
+	box-sizing: border-box;
+}
+#header .option-list li a:hover{
+    color: #1f9fea;
+    background-color: #ececec;
+}
+#header .option-list li>a>span{
+    display: inline-block;
+    width: 16px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background-image: url(../images/user_option_icon.png);
+}
+.user-option .my-msg span{ background-position: 0 0px; }
+.user-option .my-stat span{ background-position: 0 -247px; }
+.user-option .my-site span{ background-position: 0 -30px; }
+.user-option .my-profile span{ background-position: 0 -60px; }
+.user-option .my-order span{ background-position: 0 -90px; }
+.user-option .security span{ background-position: 0 -150px; }
+.user-option .my-staff span{ background-position: 0 -180px; }
+.user-option .exit span{ background-position: 0 -120px; }
+.user-option .change-password span{ background-position: 0 -210px; }
+.user-option .account-bind span{ background-position: 0 -307px; }
+.user-option .my-domain span{ background-position: 0 -277px; }
+
+.user-option .my-msg:hover span { background-position: -20px 0px; }
+.user-option .my-stat:hover span { background-position: -20px -247px; }
+.user-option .my-site:hover span { background-position: -20px -30px; }
+.user-option .my-profile:hover span { background-position: -20px -60px; }
+.user-option .my-order:hover span { background-position: -20px -90px; }
+.user-option .security:hover span { background-position: -20px -150px; }
+.user-option .my-staff:hover span { background-position: -20px -180px; }
+.user-option .exit:hover span { background-position: -20px -120px; }
+.user-option .change-password:hover span { background-position: -20px -210px; }
+.user-option .account-bind:hover span{ background-position: -20px -307px; }
+.user-option .my-domain:hover span{ background-position: -20px -277px; }
+
+/*头像*/
+#header .avatar{
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	margin: 6px 6px 0 18px;
+}
+
+/*通知*/
+#header .notice{
+	position: relative;
+	color: #7a7a7a;
+	width: 20px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+}
+#header .notice .num{
+	position: absolute;
+	bottom: 16px;
+	left: 8px;
+	padding: 0 6px;
+	background-color: #fe3e4d;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 12px;
+}
