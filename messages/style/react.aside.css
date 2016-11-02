@@ -1,1 +1,319 @@
-#aside { float: left; width: 300px; }
+#aside{ 
+	float: left; 
+	width: 300px;
+	background-color: #fff;
+	border-radius: 3px; 
+}
+/*aside-top*/
+#aside .aside-top{
+	text-align: center;
+}
+#aside .avatar{
+	display: block;
+	width: 128px;
+	height: 128px;
+	border-radius: 50%;
+	margin: 42px auto 0;
+}
+#aside .user-name{
+	line-height: 34px;
+	color: #54595d;
+	font-size: 16px;
+	text-align: center;
+	padding-left: 0 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+#aside .user-role{
+	display: inline-block;
+	color: #fff;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	padding: 0 10px;
+	background-color: #ef9827;
+	border-radius: 4px;
+	margin: 0 auto 32px;
+}
+#aside .count{
+	overflow: hidden;
+	border-top: 1px solid #e9ecf1;
+	border-bottom: 1px solid #e9ecf1;
+}
+#aside .count>li{
+	float: left;
+	width: 50%;
+	height: 100px;
+	border-left: 1px solid #e9ecf1;
+	box-sizing: border-box;
+}
+#aside .count>li:first-child{
+	border-left: none;
+}
+#aside .count>li .num{
+	font-size: 20px;
+	font-weight: bold;
+	color: #2e2f31;
+	margin: 22px 0 0 0;
+	line-height: 34px;
+}
+#aside .count>li .desc{
+	font-size: 12px;
+	color: #9f9f9f;
+}
+/*social-list*/
+.social-list>li{
+	margin: 10px 40px;
+}
+.social-list>li.hr{
+	margin: 0;
+	width: 100%;
+	height: 20px;
+	background-color: transparent;
+}
+.social-list .provider-url{
+	line-height: 30px;
+}
+.social-list .provider-url .icon{
+	color: #3b76bc;
+	font-size: 16px;
+    display: inline-block;
+    width: 16px;
+}
+.social-list .provider-url a{
+	color: #9fa0a0;
+	font-size: 14px;
+	margin: 0 0 0 10px;
+}
+.social-list .provider-url .out-of-date{
+	display: none;
+	float: right;
+    font-size: 12px;
+    color: #ccc;
+}
+.social-list .msg-count,
+.social-list .persons{
+	padding-left: 26px;
+}
+.social-list .msg-count .num,
+.social-list .persons .num{
+	font-size: 14px;
+	color: #2e2f31;
+    display: inline-block;
+    width: 50px;
+    font-weight: bold;
+}
+.social-list .msg-count .desc,
+.social-list .persons .desc{
+	font-size: 12px;
+	color: #acadad;
+}
+.social-list .facebook .provider-url .icon{
+	color: #315a9c;
+}
+.social-list .twitter .provider-url .icon{
+	color: #00adf2;
+}
+.social-list .linkedinExp .desc,
+.social-list .facebookExp .desc,
+.social-list .twitterExp .desc,
+.social-list .linkedinExp .num,
+.social-list .facebookExp .num,
+.social-list .twitterExp .num,
+.social-list .linkedinExp .provider-url .icon,
+.social-list .facebookExp .provider-url .icon,
+.social-list .twitterExp .provider-url .icon{
+	color: #acadad;
+}
+.social-list .linkedinExp .provider-url .out-of-date,
+.social-list .facebookExp .provider-url .out-of-date,
+.social-list .twitterExp .provider-url .out-of-date{
+	display: block;
+}
+/*管理社交媒体账号*/
+.manage-social-btn{
+	display: block;
+	width: 120px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	border: 1px solid #e5e7e8;
+	color: #2d3031;
+	font-size: 12px;
+	margin: 30px auto;
+	border-radius: 3px;
+}
+.manage-social-btn:hover{
+	background-color: #eee;
+}
+#pop-manage{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 99;
+	display: none;
+}
+#pop-manage .pop-box{
+	position: fixed;
+    width: 600px;
+	background-color: #fff;
+	left: 50%;
+	top: 50%;
+    border: 1px solid #d9dadc;
+    border-radius: 4px;
+    z-index: 999;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+#pop-manage .pop-box .pop-title{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #525354;
+    padding-left: 18px;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d9dadc;
+}
+#pop-manage .pop-box .pop-title .pop-close{
+	display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 16px;
+    right: 26px;
+    color: #95a3b0;
+    background-image: url(../images/close.png);
+}
+#pop-manage .pop-box .pop-main{
+	overflow: hidden;
+    padding-bottom: 28px;
+}
+#pop-manage .pop-nav{
+	margin: 28px 18px 0 0;
+    float: left;
+}
+#pop-manage .pop-nav li{
+    width: 150px;
+    height: 36px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #525354;
+    line-height: 36px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-left: 12px;
+    border-left: 5px solid #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#pop-manage .pop-nav li.active{
+	border-left: 5px solid #209eea;
+    background-color: #efefef;
+}
+#pop-manage .pop-nav li span{
+	display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    margin: 3px 8px 0 0px;
+    text-align: center;
+    line-height: 36px;
+}
+#pop-manage .pop-nav li.linkedin span{
+    background-color: #4169a2;
+}
+#pop-manage .pop-nav li.facebook span{
+    background-color: #2d4373;
+}
+#pop-manage .pop-nav li.twitter span{
+    background-color: #0199d4;
+}
+#pop-manage .pop-nav li span i{
+	color: #fff;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    margin-top: 3px;
+}
+#pop-manage .pop-cont{
+	float: left;
+    width: 400px;
+    height: 250px;
+    margin: 28px 0 0 0;
+    background-color: #efefef;
+    padding: 16px;
+    box-sizing: border-box;
+}
+#pop-manage .pop-cont li{
+	display: none;
+}
+#pop-manage .pop-cont li.active{
+	display: block;
+}
+#pop-manage .pop-cont li h2{
+    font-size: 18px;
+    color: #2ea3ea;
+    line-height: 26px;
+    /* margin-top: 16px;*/
+}
+#pop-manage .pop-cont li .tip{
+	font-size: 14px;
+    color: #525354;
+    margin-bottom: 20px;
+}
+#pop-manage .pop-cont li .tip-list{
+    font-size: 14px;
+    color: #525354;
+    height: 30px;
+    line-height: 30px;
+}
+#pop-manage .pop-cont li .tip-list span{
+	display: block;
+    float: left;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 16px;
+    margin: 7px 8px 0 0;
+    width: 16px;
+    height: 16px;
+}
+#pop-manage .pop-cont li .tip-list span i{
+    color: #fff;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    line-height: 12px;
+    margin-top: 2px;
+}
+#pop-manage .pop-cont .cont-linkedin .tip-list span{
+	background-color: #4169a2;
+}
+#pop-manage .pop-cont .cont-facebook .tip-list span{
+	background-color: #2d4373;
+}
+#pop-manage .pop-cont .cont-twitter .tip-list span{
+	background-color: #0199d4;
+}
+#pop-manage .pop-cont .pop-connect{
+	display: block;
+    width: 130px;
+    height: 38px;
+    font-size: 14px;
+    background-color: #209eea;
+    text-align: center;
+    line-height: 38px;
+    color: #fff;
+    border-radius: 4px;
+    margin: 20px 0 0 0;
+}
