@@ -24,6 +24,8 @@ pointer-events: none; width: 12px;}
 .socialBtnsCheck .checkBtn > .fa {display: inline-block; height: 32px; width: 32px; line-height: 32px;}
 .socialBtnsCheck .socialCheckError { position: absolute; right: -145px; top: 50%; margin-top: -14px; background-color: #f34e4c; color: #f9f5f6;
  line-height: 28px; padding: 0 10px; border-radius: 3px; font-size: 12px; white-space: nowrap; }
+.socialBtnsCheck .socialCheckError[data-hidden="show"] { display: block; }
+.socialBtnsCheck .socialCheckError[data-hidden="hide"] { display: none; }
 .socialBtnsCheck .socialCheckError:after{ content: ''; width: 8px; height: 8px; position: absolute; left: -4px; top: 9px; 
  background-color: #f34e4c; transform-origin: center center; transform:rotate(45deg); z-index: 2; }
 

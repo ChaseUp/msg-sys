@@ -100,6 +100,13 @@ var SocialInfoList = React.createClass({
 				}
 			});
 
+			var socialChoosederror = "hide";
+			if(this.state.fbUsers || this.state.twUsers || this.state.LIUsers){
+				socialChoosederror = "hide";
+			}else{
+				socialChoosederror = "show";
+			}
+
 			return (
 				<div className="socialBtnsCheck fll">
 					<div className="checkBtn facebook" data-toggle={this.state.fbListToggle}>
@@ -119,7 +126,7 @@ var SocialInfoList = React.createClass({
 						<span className={this.state.LIUsers?'choosedUser':'noUser'}>{this.state.LIUsers?this.state.LIUsers:"+"}</span>
 						<div className="socialUserList LinkedInUserList"> {LinkedInUserList} </div>
 					</div>
-					<p className="socialCheckError">至少选择一个社交媒体</p>
+					<p className="socialCheckError" data-hidden={socialChoosederror}>至少选择一个社交媒体</p>
 				</div>
 			);
 		}
@@ -162,11 +169,15 @@ var SocialBtns = React.createClass({
 var MessageInputSec = React.createClass({
 	getInitialState: function(){
 		return {
-			isClockPush:false
+			isClockPush:false,
+			addPages:false
 		};
 	},
 	handleChange: function() {
 		this.props.onUserInput(this.refs.messageInputText.value);
+	},
+	handleAddPages:function(e){
+		this.state.addPages?this.setState({addPages: false}):this.setState({addPages: true});
 	},
 	handleClockPush:function(e){
 		this.state.isClockPush?this.setState({isClockPush: false}):this.setState({isClockPush: true});
@@ -174,7 +185,8 @@ var MessageInputSec = React.createClass({
 			$(".datePickerWapper .datePicker").addClass("isLoaded").datepicker({
 				format: 'yyyy-mm-dd',
 				language: 'zh-CN',
-				autoHide:true
+				autoHide:true,
+				autoPick:true
 			});
 		}
 	},
@@ -183,26 +195,40 @@ var MessageInputSec = React.createClass({
 			e.target.value=("0"+parseInt(e.target.value));
 		}
 	},
-	submitMsg:function(type){
-		/*$.ajax({
-			url:'/phoenix/admin/social/msg/submitMsg',
-			type:"POST",
-			dataType:"json",
-			data:{
-				"encodeTokenIds":'abc|ABC|xyz',
-				"content":$("#messageInput").val(),
-				"shareLinks":"baidu.com",
-				"scheduleTime":"2016-11-01 10:30",
-				"messageId":"asdsadasdas",
-				"isDraft":(type=="isDraft")?'0':'1'
-			},
-			success:function(xhr){
-				console.log(xhr.responseText);
-			}.bind(this),
-			error:function(xhr){
-				console.log(xhr.responseText);
-			}.bind(this)
-		})*/
+	submitMsg:function(e){
+		//判断是否为草稿
+		var type = $(e.target).attr("class");
+		var isDraft = () => { 
+			if(type.indexOf("draft")!=-1){
+				return 0;
+			}else if(type.indexOf("push")!=-1){
+				return 1;
+			}
+		}
+		//消息提交方法
+		if($("#messageInput").val().length && $(".socialCheckError").attr("data-hidden")=="hide"){
+			$.ajax({
+				url:'/phoenix/admin/social/msg/submitMsg',
+				type:"POST",
+				dataType:"json",
+				data:{
+					"encodeTokenIds":'abc|ABC|xyz',
+					"content":$("#messageInput").val(),
+					"shareLinks":"baidu.com",
+					"scheduleTime":"2016-11-01 10:30",
+					"messageId":"asdsadasdas",
+					"isDraft":isDraft()
+				},
+				success:function(xhr){
+					console.log(xhr.responseText);
+				}.bind(this),
+				error:function(xhr){
+					console.log(xhr.responseText);
+				}.bind(this)
+			})
+		}else{
+			alert("请填写消息内容，选择发件人！");
+		}
 	},
 	render:function(){
 		return (
@@ -228,12 +254,12 @@ var MessageInputSec = React.createClass({
 						<a href="javascript:;" className="photos"><i className="fa fa-photo" aria-hidden="true"></i> 图片</a>
 						<a href="javascript:;" className="articles"><i className="fa fa-newspaper-o" aria-hidden="true"></i> 引用文章</a>
 						<a href="javascript:;" className="products"><i className="fa fa-cubes" aria-hidden="true"></i> 引用产品</a>
-						<a href="javascript:;" className="pages"><i className="fa fa-file-text-o" aria-hidden="true"></i> 引用页面</a>
+						<a href="javascript:;" className={this.state.addPages?"pages on":"pages"} onClick={this.handleAddPages}><i className="fa fa-file-text-o" aria-hidden="true"></i> 添加链接</a>
 						<a href="javascript:;" className={this.state.isClockPush?"clockPush on":"clockPush"} onClick={this.handleClockPush}><i className="fa fa-clock-o" aria-hidden="true"></i> 定时发</a>
 					</div>
 					<div className="postBtns flr">
-						<a href="javascript:;" className="postBtns-draft" onClick={this.submitMsg("isDraft")}>保存草稿</a>
-						<a href="javascript:;" className="postBtns-push" onClick={this.submitMsg("postMsg")}>发布</a>
+						<a href="javascript:;" className="postBtns-draft" onClick={this.submitMsg}>保存草稿</a>
+						<a href="javascript:;" className="postBtns-push" onClick={this.submitMsg}>发布</a>
 					</div>
 				</div>
 			</div>
