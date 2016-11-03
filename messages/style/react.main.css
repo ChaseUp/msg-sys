@@ -8,8 +8,9 @@
 .socialBtns .checkBtn.facebook { background-color: #2d4f8c; }
 .socialBtns .checkBtn.twitter { background-color: #009bdb;}
 .socialBtns .checkBtn.LinkedIn { background-color: #3369a7;}
-.socialBtns .checkBtn > span {position: absolute;right: -3px;top: -6px; background-color: #f44c4c;line-height: 12px;padding: 2px;border-radius: 50%;
+.socialBtns .checkBtn > span {position: absolute;right: -3px;top: -6px; background-color: #f44c4c;line-height: 12px;padding: 2px;border-radius: 50%;font-size:12px;
 pointer-events: none; width: 12px;}
+.socialBtns .checkBtn > .noUser { background-color: #45b44b; font-size:14px;}
 .socialBtns .checkBtn.small { width: 16px; height: 16px; line-height: 16px;  font-size: 12px; margin-left: 8px; margin-right: 0; }
 /*用户社交账户展示列表*/
 .msgInputArea .socialBtns { position:relative; z-index: 3; }
@@ -34,16 +35,27 @@ pointer-events: none; width: 12px;}
 /*消息输入框*/
 .messageInputSec {}
 .messageInputWrap { position: relative; }
-.messageInputSec #messageInput { display: block; width: 98%; padding:1%; border:1px solid #35a8e9; border-radius: 3px; resize: none;
+.messageInputSec #messageInput { display: block; width: 98%; padding:1%; border:1px solid #c5c6c6; border-radius: 3px; resize: none;
  height: 160px; overflow: auto; font: 14px/1.7 'Microsoft YaHei'; color: #181818; box-shadow: inset 0 0 3px #ccc;}
-.messageInputSec #messageInput:focus { box-shadow: inset 0 0 10px #ccc; outline: none;}
+.messageInputSec #messageInput:focus { box-shadow: inset 0 0 10px #ccc; outline: none; border-color: #35a8e9;}
 /*引用工具*/
-.messageInputTools .toolBtns a { color: #727272; margin-right: 10px;}
+.messageInputTools .toolBtns a {color: #727272;margin-right: 2px;p;padding: 0 8px;}
+.messageInputTools .toolBtns a.on { box-shadow: 0 0 3px #aaa; background-color: #fcfcfc; border-radius: 3px;}
 .messageInputTools .toolBtns a.photos .fa { color: #8ecf3f;}
 .messageInputTools .toolBtns a.articles .fa { color: #40cbb4;}
 .messageInputTools .toolBtns a.products .fa { color: #b174c2;}
 .messageInputTools .toolBtns a.pages .fa { color: #f39801;}
 .messageInputTools .toolBtns a.clockPush .fa { color: #58ade6;}
+/*定时发送时间选择*/
+.messageInputWrap .timerClockPush {position: absolute;bottom: 1px;left: 1px;right: 1px;line-height: 38px;border-top:1px solid #c5c6c6;
+ background-color: #f6f6f6;border-radius: 0 0 3px 3px; color: #7f8184;}
+.messageInputWrap .timerClockPush .closeClockPush { position: absolute; right: 10px; top: 0; color: #55585d; }
+.messageInputWrap .timerClockPush .closeClockPush:hover { color: #ea8010; }
+/*时间选择器*/
+.datePickerWapper { margin-left: 20px; }
+.datePickerWapper > * {float: left;}
+.datePickerWapper > input { margin: 7px 5px 0;height: 22px;border: 1px solid #d2d2d2;padding: 0 3px 0 10px; width: 5.5em;}
+.datePickerWapper > input[type="number"] { width: 2.5em;border-radius: 3px;}
 /*发布按钮*/
 .postBtns a { display: inline-block; height: 34px; line-height: 34px; text-align: center; border-width: 1px; border-radius: 3px; border-style: solid; }
 .postBtns a.postBtns-push { width: 120px; background-color: #44b549; color: #fff; border-color: #44b549;}
@@ -73,13 +85,16 @@ pointer-events: none; width: 12px;}
 .queueInfo {}
 .dataQueueWrapper { float: left; width: 300px; font-size: 12px; }
 .dataQueueWrapper .dataQueueCheck { float: left; position: relative; margin-right: 6px;}
+.dataQueueWrapper .dataQueueCheck[data-hidden="hide"] { display: none; }
 .dataQueueWrapper .dataQueueCheck header { padding: 0 5px 0 10px; border:1px solid #e5e5e5; border-radius: 2px; background-color: #f7f9f8; color: #55585d; 
 box-shadow: 0 0 4px #ddd; cursor: pointer;}
-.dataQueueWrapper .dataQueueCheck header .fa { font-size: 14px; margin-left: 5px;}
-.dataQueueWrapper .dataQueueCheck header .fa-angle-up { display: none; }
-.dataQueueWrapper .dataQueueCheck ul { display: none; position: absolute; left: 0; right: 0; top: 21px; border:1px solid #e5e5e5; border-radius: 0 0 2px 2px;
- background-color: #f7f9f8; padding: 2px 0 5px; border-top-color: #f7f9f8; box-shadow: 0 2px 4px #ddd;}
- .dataQueueWrapper .dataQueueCheck[data-tg="true"] header .fa-angle-down { display: none; }
- .dataQueueWrapper .dataQueueCheck[data-tg="true"] header .fa-angle-up { display: inline; }
+.dataQueueWrapper .dataQueueCheck header .fa { font-size: 14px; margin-left: 5px; transform-origin: center center; transition: all linear 0.2s; }
+.dataQueueWrapper .dataQueueCheck ul { display: none; position: absolute; left: 0; top: 21px; border:1px solid #e5e5e5; border-radius: 0 0 2px 2px;
+ background-color: #f7f9f8; padding: 2px 0 5px; border-top-color: #f7f9f8; box-shadow: 0 2px 4px #ddd; min-width: 97%;}
+ .dataQueueWrapper .dataQueueCheck[data-tg="true"] header .fa { transform:rotate(180deg);}
 .dataQueueWrapper .dataQueueCheck[data-tg="true"] ul { display: block; }
-.dataQueueWrapper .dataQueueCheck ul li { padding: 0 10px; color: #55585d; }
+.dataQueueWrapper .dataQueueCheck ul li { padding: 0 10px; color: #55585d; white-space: nowrap;}
+.dataQueueWrapper .dataQueueCheck ul li[data-sendFlag='0'] .fa:before {content: "\f017"; color: #36a9ea;}/*待发送*/
+.dataQueueWrapper .dataQueueCheck ul li[data-sendFlag='1'] .fa:before {content: "\f0ee"; color: #f39801;}/*发送中*/
+.dataQueueWrapper .dataQueueCheck ul li[data-sendFlag='2'] .fa:before {content: "\f058"; color: #62c06a;}/*已发送*/
+.dataQueueWrapper .dataQueueCheck ul li[data-sendFlag='3'] .fa:before {content: "\f057"; color: #eb6c65;}/*发送失败*/
