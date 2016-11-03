@@ -4,7 +4,7 @@
 	<MessagesInputArea>
 		//社交平台筛选按钮
 		<SocialBtns url="/url" messageInputText={messageInputText}>
-			<SocialInfoList promise="url" />
+			<SocialInfoList url="url" />
 		</SocialBtns>
 		//消息输入框
 		<MessageInputSec onUserInput={onUserInput} />
@@ -27,12 +27,17 @@ var SocialInfoList = React.createClass({
 		};
 	},
 	componentDidMount() {
-		this.props.promise.then(
-			value => this.setState({
-				loading: false,
-				data: value
-			})
-		)
+		$.ajax({
+			url:this.props.url,
+			type:'GET',
+			dataType:'json',
+			success:function(xhr){
+				this.setState({
+					loading: false,
+					data: xhr
+				})
+			}.bind(this)
+		})
 	},
 	handleClickToggle:function(event){
 		var evtClassName = event.target.className;
@@ -52,7 +57,7 @@ var SocialInfoList = React.createClass({
 			this.setState({twListToggle: false});
 		};
 	},
-	checkNumCLick(){
+	checkNumCLick(e){
         var fb = $("input[name='fb']:checked").length;
         var tw = $("input[name='tw']:checked").length;
         var LI = $("input[name='LI']:checked").length;
@@ -60,6 +65,8 @@ var SocialInfoList = React.createClass({
         this.setState({fbUsers: fb});
         this.setState({twUsers: tw});
         this.setState({LIUsers: LI});
+
+        $(e.target).toggleClass('checked');
     },
 	render: function() {
 		var handleChoosedChange = this.checkNumCLick;
@@ -93,18 +100,20 @@ var SocialInfoList = React.createClass({
 				}
 			});
 
-			return ( 
+			return (
 				<div className="socialBtnsCheck fll">
 					<div className="checkBtn facebook" data-toggle={this.state.fbListToggle}>
 						<i className="fa fa-facebook" onClick={this.handleClickToggle}></i> 
 						<span className={this.state.fbUsers?'choosedUser':'noUser'}>{this.state.fbUsers?this.state.fbUsers:"+"}</span>
 						<div className="socialUserList facebookUserList"> {facebookUserList} </div>
 					</div>
+
 					<div className="checkBtn twitter" data-toggle={this.state.twListToggle}>
 						<i className="fa fa-twitter" onClick={this.handleClickToggle}></i> 
 						<span className={this.state.twUsers?'choosedUser':'noUser'}>{this.state.twUsers?this.state.twUsers:"+"}</span>
 						<div className="socialUserList twitterUserList" > {twitterUserList} </div> 
 					</div>
+
 					<div className="checkBtn LinkedIn" data-toggle={this.state.LIListToggle}>
 						<i className="fa fa-linkedin" onClick={this.handleClickToggle}></i> 
 						<span className={this.state.LIUsers?'choosedUser':'noUser'}>{this.state.LIUsers?this.state.LIUsers:"+"}</span>
@@ -131,7 +140,7 @@ var SocialBtns = React.createClass({
 	render:function(){
 		return (
 			<div className="socialBtns fix">
-				<SocialInfoList promise={$.getJSON('/phoenix/admin/social/msg/socialInfo')} />
+				<SocialInfoList url="/phoenix/admin/social/msg/socialInfo" />
 
 				<div className="textSizeCheck flr">
 					<span className="textSizeTip">还可以输入：</span>
@@ -171,16 +180,29 @@ var MessageInputSec = React.createClass({
 	},
 	timerChange:function(e){
 		if(e.target.value<10){
-			e.target.value=("0"+e.target.value);
+			e.target.value=("0"+parseInt(e.target.value));
 		}
 	},
-	submitMsg:function(){
-		console.log('发送');
-		// /phoenix/admin/social/msg/submitMsg
-	},
-	submitMsgDraft:function(){
-		console.log('草稿');
-		// /phoenix/admin/social/msg/submitMsg
+	submitMsg:function(type){
+		/*$.ajax({
+			url:'/phoenix/admin/social/msg/submitMsg',
+			type:"POST",
+			dataType:"json",
+			data:{
+				"encodeTokenIds":'abc|ABC|xyz',
+				"content":$("#messageInput").val(),
+				"shareLinks":"baidu.com",
+				"scheduleTime":"2016-11-01 10:30",
+				"messageId":"asdsadasdas",
+				"isDraft":(type=="isDraft")?'0':'1'
+			},
+			success:function(xhr){
+				console.log(xhr.responseText);
+			}.bind(this),
+			error:function(xhr){
+				console.log(xhr.responseText);
+			}.bind(this)
+		})*/
 	},
 	render:function(){
 		return (
@@ -210,8 +232,8 @@ var MessageInputSec = React.createClass({
 						<a href="javascript:;" className={this.state.isClockPush?"clockPush on":"clockPush"} onClick={this.handleClockPush}><i className="fa fa-clock-o" aria-hidden="true"></i> 定时发</a>
 					</div>
 					<div className="postBtns flr">
-						<a href="javascript:;" className="postBtns-draft" onClick={this.submitMsgDraft}>保存草稿</a>
-						<a href="javascript:;" className="postBtns-push" onClick={this.submitMsg}>发布</a>
+						<a href="javascript:;" className="postBtns-draft" onClick={this.submitMsg("isDraft")}>保存草稿</a>
+						<a href="javascript:;" className="postBtns-push" onClick={this.submitMsg("postMsg")}>发布</a>
 					</div>
 				</div>
 			</div>
