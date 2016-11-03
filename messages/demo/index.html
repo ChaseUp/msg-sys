@@ -64,6 +64,138 @@
 		<div class="msgListTabs sections">sadsa</div>
 	</div>
 </div>
+
+<div id="hidden" style="display: none;">
+	[#assign userPname1="" /]
+	[#assign userPid1="" /]
+	[#assign userName1="" /]
+	[#assign hasNewMsg1="0" /]
+	[#assign unreadCount1="" /]
+	[@userLogonStatus]
+		[#assign userPname1="${userPname!''}" /]
+		[#assign userPid1="${userPid!''}" /]
+		[#assign userName1="${userName!''}" /]
+		[#assign hasNewMsg1="${hasNewMsg!''}" /]
+		[#assign unreadCount1="${unreadCount!''}" /]
+	[/@userLogonStatus]
+	
+	<!-- <div id="userName">${userName1!?html}</div>
+	<div id="unreadCount">${unreadCount1!?html}</div>
+	<div id="optionList">
+		<a class="nav-link dropdown-toggle nav-link user-btn" data-toggle="dropdown" href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false">
+			[#if userPid1 != '']
+				[@web_image pname="${userPname1!''}" pid="${userPid1!''}"][/@web_image]
+			[#else]
+				<img src="[@web_common_url type='2'/]/assets/widget/images/user/default-avatar.jpg" >
+			[/#if]
+            <span class="hidden-md-down hidden-username">${userName1!?html}</span>
+        </a>
+        <div class="user-option">
+			<div class="dropdown-menu dropdown-menu-right user-option">
+		        [@accountNav accountNavType="1"]
+					[#list manageMap?keys as manageMapKey]
+						<div class="${manageMap[manageMapKey].urlClass!''}">
+							<a href="${manageMap[manageMapKey].url!'javascript:;'}" >
+								<span class="user-option-icon"></span>
+								${manageMap[manageMapKey].name!?html}
+							</a>
+						</div>
+					[/#list]
+					<div class="user-option-hr"></div>
+					[#list personalMap?keys as personalMapKey]
+					<div class="${personalMap[personalMapKey].urlClass!''}">
+						<a href="${personalMap[personalMapKey].url!'javascript:;'}" >
+							<span class="user-option-icon"></span>
+							${personalMap[personalMapKey].name!?html}
+						</a>
+					</div>
+					[/#list]
+				[/@accountNav]
+				<div class="exit">
+					<a href="/phoenix/admin/user/logout">
+						<span class="user-option-icon"></span>
+						[@s.m code="phoenix_log_out"/]
+					</a>
+				</div>
+		    </div>
+		</div>
+	</div> -->
+		
+	<div id="unreadCount">24</div>
+	<div id="optionList">
+		<a class="nav-link dropdown-toggle nav-link user-btn" href="javascript:;">
+			<img id="imgUrl" src="http://a1.leadongcdn.com:6541/static/assets/widget/images/user/default-avatar.jpg" >
+            <span id="userName" class="hidden-md-down hidden-username">qianyu_test2</span>
+        </a>
+
+		<div class="my-site">
+			<a href="/website.html" >
+				<span class="user-option-icon"></span>
+				我的网站
+			</a>
+		</div>
+		<div class="my-stat">
+			<a href="/phoenix/admin/dashboard" >
+				<span class="user-option-icon"></span>
+				运营罗盘
+			</a>
+		</div>
+		<div class="my-staff">
+			<a href="/my-staff.html" >
+				<span class="user-option-icon"></span>
+				我的员工
+			</a>
+		</div>
+		<div class="my-order">
+			<a href="/orders.html" >
+				<span class="user-option-icon"></span>
+				我的订单
+			</a>
+		</div>
+		<div class="my-msg">
+			<a href="/messages.html" >
+				<span class="user-option-icon"></span>
+				我的消息
+			</a>
+		</div>
+		<div class="user-option-hr"></div>
+		<div class="my-profile">
+			<a href="/user-profile.html" >
+				<span class="user-option-icon"></span>
+				用户信息
+			</a>
+		</div>
+		<div class="account-bind">
+			<a href="/bind.html" >
+				<span class="user-option-icon"></span>
+				账号绑定
+			</a>
+		</div>
+		<div class="security">
+			<a href="/security.html" >
+				<span class="user-option-icon"></span>
+				安全设置
+			</a>
+		</div>
+		<div class="change-password">
+			<a href="/change-password.html" >
+				<span class="user-option-icon"></span>
+				修改密码
+			</a>
+		</div>
+		<div class="exit">
+			<a href="/phoenix/admin/user/logout">
+				<span class="user-option-icon"></span>
+				安全退出
+			</a>
+		</div>
+
+	</div>
+
+
+
+</div>
+	
 </body>
 <script src="../script/react/react.js"></script>
 <script src="../script/react/react-dom.js"></script>

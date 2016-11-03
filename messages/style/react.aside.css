@@ -64,7 +64,7 @@
 }
 /*social-list*/
 .social-list>li{
-	margin: 10px 40px;
+	margin: 12px 40px;
 }
 .social-list>li.hr{
 	margin: 0;
@@ -88,9 +88,6 @@
 }
 .social-list .provider-url .out-of-date{
 	display: none;
-	float: right;
-    font-size: 12px;
-    color: #ccc;
 }
 .social-list .msg-count,
 .social-list .persons{
@@ -101,7 +98,7 @@
 	font-size: 14px;
 	color: #2e2f31;
     display: inline-block;
-    width: 50px;
+    min-width: 40px;
     font-weight: bold;
 }
 .social-list .msg-count .desc,
@@ -114,6 +111,11 @@
 }
 .social-list .twitter .provider-url .icon{
 	color: #00adf2;
+}
+.social-list .linkedinExp,
+.social-list .facebookExp,
+.social-list .twitterExp{
+	opacity: 0.5;
 }
 .social-list .linkedinExp .desc,
 .social-list .facebookExp .desc,
@@ -129,7 +131,17 @@
 .social-list .linkedinExp .provider-url .out-of-date,
 .social-list .facebookExp .provider-url .out-of-date,
 .social-list .twitterExp .provider-url .out-of-date{
-	display: block;
+    float: none;
+    display: inline-block;
+    background-color: #ccc;
+    color: #fff;
+    width: 44px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 20px;
 }
 /*管理社交媒体账号*/
 .manage-social-btn{
@@ -155,7 +167,15 @@
 	top: 0;
 	background-color: rgba(0,0,0,0.8);
 	z-index: 99;
+	opacity: 0;
 	display: none;
+	transition: opacity 0.5s;
+}
+#pop-manage.pop-manage-hide{
+	opacity: 0;
+}
+#pop-manage.pop-manage-show{
+	opacity: 1;
 }
 #pop-manage .pop-box{
 	position: fixed;

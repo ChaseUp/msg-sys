@@ -22,15 +22,19 @@ var MessagesHeader = React.createClass({
 		this.setState({data: headerData});
 	},
 	render : function(){
+		var numIcon = null;
+		if (this.state.data.notice > 0) {
+			numIcon = (<span className="num" key={this.state.data.notice}>{this.state.data.notice}</span>);
+		}
 		return (
 			<div className="header-inner">
 				<img className="logo fll" src="../images/logo.png" />
 				<a className="goto-mysite fll" href="/website.html">进入我的网站</a>
 				<UserSelect dataPack={this.state.data} />
 				<img className="avatar flr" src={this.state.data.iconUrl} />
-				<a href="javascript:;" className="notice flr">
+				<a href="/messages.html" className="notice flr">
 					<i className="fa fa-bell-o" aria-hidden="true"></i>
-					<span className="num">{this.state.data.notice}</span>
+					{numIcon}
 				</a>
 			</div>
 		);
@@ -39,13 +43,24 @@ var MessagesHeader = React.createClass({
 
 //下拉框组件
 var UserSelect = React.createClass({
+	getInitialState : function(){
+		return ({showOptions : false});
+	},
+	componentDidMount : function(){
+		document.addEventListener("click",function(ev){
+			var tar = ev.target;
+			if ( !(tar.className.indexOf("user-option") >= 0) &&
+				 !(tar.parentNode.className.indexOf("user-option") >= 0) &&
+				 !(tar.parentNode.parentNode.className.indexOf("user-option") >= 0) ) {
+				this.setState({showOptions : false});
+			}
+		}.bind(this));
+	},
+	componentWillUnmount : function(){
+		document.removeEventListener("click");
+	},
 	optionSlide : function(){
-		var list = $(this.refs.optionList);
-		if (list.is(":hidden")) {
-			list.slideDown();
-		} else {
-			list.slideUp();
-		}
+		this.setState({showOptions : !this.state.showOptions});
 	},
 	render : function(){
 		var option_lis = [];
@@ -66,7 +81,7 @@ var UserSelect = React.createClass({
 			<div className="user-option flr" onClick={this.optionSlide}>
 				<span className="user-name">{this.props.dataPack.userName}</span>
 				<i className="fa fa-caret-down" aria-hidden="true"></i>
-				<ul className="option-list" ref="optionList">
+				<ul className={"option-list" + (this.state.showOptions ? " option-show" : " option-hide")} ref="optionList">
 					{option_lis}
 				</ul>
 			</div>
