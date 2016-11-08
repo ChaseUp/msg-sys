@@ -23,6 +23,9 @@
 	border-radius: 4px;
 	margin: 15px 0 0 38px;
 }
+#header .goto-mysite:hover{
+	border-color: #15aff5;
+}
 /*下拉框*/
 #header .user-option{
 	height: 60px;

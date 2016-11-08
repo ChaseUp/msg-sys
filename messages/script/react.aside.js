@@ -231,20 +231,18 @@ var ManageSocialBtn = React.createClass({
 	showManagePop : function(){
 		this.refs.pop.style.display = "block";
 		this.setState({
-			popShow : true,
-			checkId : this.state.checkId
+			popShow : true
 		});
 	},
 	hideManagePop : function(){
 		this.setState({
-			popShow : false,
-			checkId : this.state.checkId
+			popShow : false
 		},function(){
 			setTimeout(() => {this.refs.pop.style.display = "none";},500);
 		})
 	},
 	tabCheck : function(ev){
-		this.setState({popShow : this.state.popShow, checkId : ev.target.dataset.checkid});
+		this.setState({checkId : ev.target.dataset.checkid});
 	},
 	connectEvent : function(ev){
 		var providerId = ev.target.getAttribute("role");

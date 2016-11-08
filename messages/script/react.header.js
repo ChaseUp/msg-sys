@@ -49,9 +49,10 @@ var UserSelect = React.createClass({
 	componentDidMount : function(){
 		document.addEventListener("click",function(ev){
 			var tar = ev.target;
-			if ( !(tar.className.indexOf("user-option") >= 0) &&
-				 !(tar.parentNode.className.indexOf("user-option") >= 0) &&
-				 !(tar.parentNode.parentNode.className.indexOf("user-option") >= 0) ) {
+			if ( !tar.className ||
+				(!(tar.className.indexOf("user-option") != -1) &&
+				 !(tar.parentNode.className.indexOf("user-option") != -1) &&
+				 !(tar.parentNode.parentNode.className.indexOf("user-option") != -1)) ) {
 				this.setState({showOptions : false});
 			}
 		}.bind(this));
@@ -78,9 +79,11 @@ var UserSelect = React.createClass({
 		}
 			
 		return(
-			<div className="user-option flr" onClick={this.optionSlide}>
-				<span className="user-name">{this.props.dataPack.userName}</span>
-				<i className="fa fa-caret-down" aria-hidden="true"></i>
+			<div className="user-option flr">
+				<div className="slide-btn" onClick={this.optionSlide}>
+					<span className="user-name">{this.props.dataPack.userName}</span>
+					<i className="fa fa-caret-down" aria-hidden="true"></i>
+				</div>
 				<ul className={"option-list" + (this.state.showOptions ? " option-show" : " option-hide")} ref="optionList">
 					{option_lis}
 				</ul>
